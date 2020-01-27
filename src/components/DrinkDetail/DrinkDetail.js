@@ -6,17 +6,17 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import {useStyles} from './DrinksDetailsStyle'
+import Button from '@material-ui/core/Button';
+import {connect} from 'react-redux'
+import {addCardItem} from '../../actions/cardActions'
 
-export default function DrinkDetail(props) {
+const DrinkDetail = props => {
   const classes = useStyles();
   const { onClose, open, drinkDetail } = props;
 
-  const handleClose = () => {
-    onClose();
-  };
   return (
     <Dialog
-      onClose={handleClose}
+      onClose={onClose}
       open={open}
       classes={{
         root: classes.customRoot,
@@ -33,10 +33,13 @@ export default function DrinkDetail(props) {
               {drinkDetail.tagline}
             </Typography>
             <Typography className={classes.detailsText}>
-              abv: {drinkDetail.abv}
+              Price: {drinkDetail.abv}
             </Typography>
             <Typography className={classes.detailsText}>
               {drinkDetail.description.length > 100 ? `${drinkDetail.description.slice(0,100)}...`:drinkDetail.description}
+            </Typography>
+            <Typography className={classes.detailsText}>
+              {drinkDetail.food_pairing.length > 2 ? `${drinkDetail.food_pairing.slice(0,2).join(', ')}`:drinkDetail.food_pairing.join(', ') }
             </Typography>
           </CardContent>
         </div>
@@ -45,6 +48,7 @@ export default function DrinkDetail(props) {
             className={classes.cover}
             image={drinkDetail.image_url}
           />
+          <Button className={classes.addButton} onClick={()=> addCardItem([drinkDetail.name, drinkDetail.id])}>Add to card</Button>
         </div>
       </Card>
     </Dialog>
@@ -56,3 +60,6 @@ DrinkDetail.propTypes = {
   open: PropTypes.bool.isRequired,
   drinkDetail: PropTypes.object.isRequired
 };
+
+
+export default connect(null, {addCardItem})(DrinkDetail)

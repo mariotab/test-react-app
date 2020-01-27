@@ -21,9 +21,9 @@ export default function SimpleTabs() {
     setValue(newValue);
   };
 
-  let AllDrinksPanel = withDrinksPanel('_')
-  let PizzaDrinksPanel = withDrinksPanel('pizza')
-  let SteakDrinksPanel = withDrinksPanel('steak')
+  const AllDrinksPanel = withDrinksPanel('_')
+  const PizzaDrinksPanel = withDrinksPanel('pizza')
+  const SteakDrinksPanel = withDrinksPanel('steak')
 
   return (
     <div className={classes.root}>

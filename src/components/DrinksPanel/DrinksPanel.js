@@ -4,8 +4,7 @@ import DrinkCard from '../DrinkCard/DrinkCard'
 
 
 export default function({drinks, loading}) {
-  const classes = useStyles();
-  console.log(drinks)
+  const classes = useStyles()
   let Drinks = drinks.map(item => <DrinkCard drinkDetail={item} key={item.id}/>)
   return (
     <>

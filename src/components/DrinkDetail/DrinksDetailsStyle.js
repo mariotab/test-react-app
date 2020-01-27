@@ -42,4 +42,14 @@ export const useStyles = makeStyles(theme => ({
     backgroundColor: 'none',
     borderRadius: 10
   },
+  addButton: {
+    position: 'absolute',
+    bottom: '0',
+    width: 'fit-content',
+    backgroundColor: '#fff',
+    margin: '10px 0 10px -10px',
+    '&:hover': {
+      backgroundColor: '#fff!important',
+    }
+  }
 }));
