@@ -22,11 +22,11 @@ export function toggleError(error) {
   }
 }
 
-export function fetchDrinks() {
+export function fetchDrinks(foodFilter) {
   return async dispatch => {
     try {
       dispatch(toggleLoading(true))
-      const res = await axios('/beers',{
+      const res = await axios(`/beers?food=${foodFilter}`,{
         method: 'get'
       })
       dispatch(newDrinks(res.data))

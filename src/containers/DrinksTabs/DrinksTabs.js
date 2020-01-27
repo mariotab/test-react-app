@@ -3,12 +3,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import TabPanel from '../../components/TabPanel/TabPanel'
-import LocalCafe from '@material-ui/icons/LocalCafe'
-import Restaurant from '@material-ui/icons/Restaurant'
-import Search from '@material-ui/icons/Search'
-import AttachMoney from '@material-ui/icons/AttachMoney'
-import {useStyles} from './NavTabsStyle'
-import DrinksTabs from '../DrinksTabs/DrinksTabs'
+import {useStyles} from './DrinksTabsStyle'
+import withDrinksPanel from '../HOC/withDrinksPanel'
 
 function a11yProps(index) {
   return {
@@ -25,6 +21,10 @@ export default function SimpleTabs() {
     setValue(newValue);
   };
 
+  let AllDrinksPanel = withDrinksPanel('_')
+  let PizzaDrinksPanel = withDrinksPanel('pizza')
+  let SteakDrinksPanel = withDrinksPanel('steak')
+
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.tabsWrapper}>
@@ -38,40 +38,32 @@ export default function SimpleTabs() {
           }}
         >
           <Tab
-            icon={<LocalCafe style={{ fontSize: 33 }}/>}
+            label="ALL"
             {...a11yProps(0)}
             classes={{
             selected: classes.selected
           }}/>
           <Tab
-            icon={<Restaurant style={{ fontSize: 33 }}/>}
+            label="Pizza"
             {...a11yProps(1)}
             classes={{
               selected: classes.selected
             }}/>
           <Tab
-            icon={<AttachMoney style={{ fontSize: 33 }}/>}
-            classes={{
-              selected: classes.selected
-            }}/>
-          <Tab
-            icon={<Search style={{ fontSize: 33 }}/>}
+            label="STEAK"
             classes={{
               selected: classes.selected
             }}/>
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <DrinksTabs/>
+        <AllDrinksPanel/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <PizzaDrinksPanel/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        Item Four
+        <SteakDrinksPanel/>
       </TabPanel>
     </div>
   );

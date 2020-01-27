@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 import {fetchDrinks} from '../../actions/drinksActions'
 import DrinkPanel from '../../components/DrinksPanel/DrinksPanel'
 
-const withDrinksPanel = () => {
+const withDrinksPanel = (foodFilter) => {
 
   class HOCComponent extends Component{
     componentDidMount() {
-      this.props.fetchDrinks()
+      this.props.fetchDrinks(foodFilter)
     }
     render(){
       return (
